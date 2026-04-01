@@ -1,5 +1,4 @@
-name: Build KDE Apps
-
+name: Build Plasma
 on:
   push:
     paths:
