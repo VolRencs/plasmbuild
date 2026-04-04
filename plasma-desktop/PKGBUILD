@@ -1,7 +1,7 @@
 pkgname=plasma-desktop
 pkgver=6.6.3
 _dirver=$(echo $pkgver | cut -d. -f1-3)
-pkgrel=1
+pkgrel=2
 epoch=1
 pkgdesc='KDE Plasma Desktop'
 arch=(x86_64)
@@ -91,7 +91,8 @@ build() {
     -DBUILD_KCM_TOUCHPAD_X11=OFF \
     -DBUILD_KCM_MOUSE_X11=OFF \
     -DBUILD_KCM_TABLET=OFF \
-    -DBUILD_KCM_TOUCHPAD_KWIN_WAYLAND=OFF
+    -DBUILD_KCM_TOUCHPAD_KWIN_WAYLAND=OFF \
+    -DCMAKE_DISABLE_FIND_PACKAGE_SDL2=ON
   cmake --build build
 }
 
