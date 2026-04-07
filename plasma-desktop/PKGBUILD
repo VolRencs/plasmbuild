@@ -1,7 +1,7 @@
 pkgname=plasma-desktop
-pkgver=6.6.3
+pkgver=6.6.4
 _dirver=$(echo $pkgver | cut -d. -f1-3)
-pkgrel=2
+pkgrel=1
 epoch=1
 pkgdesc='KDE Plasma Desktop'
 arch=(x86_64)
@@ -81,7 +81,7 @@ makedepends=(extra-cmake-modules
              ninja)
 groups=(plasma)
 source=(https://download.kde.org/stable/plasma/$_dirver/$pkgname-$pkgver.tar.xz)
-sha256sums=('c5c026bb5a4a29aaf79a9bc07e77873c851f625ef5ba94ce0b717da6f18b1a18')
+sha256sums=('e2db899274c52e895f09dcecd5c502374cf24de955b31aeb8c270f171ef81138')
 
 build() {
   cmake -B build -S $pkgname-$pkgver -G Ninja \
