@@ -1,9 +1,8 @@
 pkgname=spectacle
 pkgver=6.6.4
-epoch=1
 _dirver=$(echo $pkgver | cut -d. -f1-3)
 pkgrel=1
-epoch=1
+epoch=2
 pkgdesc='KDE screenshot capture utility'
 arch=(x86_64)
 url='https://kde.org/plasma-desktop/'
