@@ -1,0 +1,61 @@
+pkgname=spectacle
+pkgver=6.6.4
+epoch=1
+_dirver=$(echo $pkgver | cut -d. -f1-3)
+pkgrel=1
+epoch=1
+pkgdesc='KDE screenshot capture utility'
+arch=(x86_64)
+url='https://kde.org/plasma-desktop/'
+license=(GPL-2.0-or-later)
+depends=(gcc-libs
+         glibc
+         kconfig
+         kconfigwidgets
+         kcoreaddons
+         kcrash
+         kdbusaddons
+         kglobalaccel
+         kguiaddons
+         ki18n
+         kio
+         kirigami
+         kjobwidgets
+         knotifications
+         kpipewire
+         kquickimageeditor
+         kservice
+         kstatusnotifieritem
+         kwidgetsaddons
+         kwindowsystem
+         kxmlgui
+         layer-shell-qt
+         libxcb
+         opencv
+         prison
+         qt6-base
+         qt6-declarative
+         qt6-imageformats
+         qt6-multimedia
+         wayland
+         xcb-util
+         xcb-util-cursor
+         xcb-util-image)
+makedepends=(extra-cmake-modules
+             plasma-wayland-protocols
+             ninja)
+optdepends=('tesseract: OCR text extraction')
+groups=(plasma)
+source=(https://download.kde.org/stable/plasma/$_dirver/$pkgname-$pkgver.tar.xz)
+sha256sums=('1e6d66f3a4731c635f6abd144f1bb002271b12626ccb38e86f04e79c7e1ad2e6')
+
+build() {
+  cmake -B build -S $pkgname-$pkgver -G Ninja \
+   -DBUILD_TESTING=OFF
+  cmake --build build
+}
+
+package() {
+  DESTDIR="$pkgdir" cmake --install build
+}
+
