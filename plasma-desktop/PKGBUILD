@@ -85,7 +85,7 @@ sha256sums=('63513b54f6f60b3cd7ec35ca2f0962bdf25669729388e8515ac1d3b8899ee47f')
 
 prepare() {
     cd $pkgname-$pkgver
-    sed -i 's/if(X11_FOUND)/if(FALSE)/' CMakeLists.txt
+    sed -i 's/set(HAVE_X11 1)/set(HAVE_X11 0)/' CMakeLists.txt
 }
 
 build() {
