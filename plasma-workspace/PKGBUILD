@@ -1,5 +1,5 @@
 pkgname=plasma-workspace
-pkgver=6.6.5
+pkgver=6.7.0
 _dirver=$(echo $pkgver | cut -d. -f1-3)
 pkgrel=1
 epoch=1
@@ -95,29 +95,18 @@ makedepends=(baloo
              networkmanager-qt
              plasma-wayland-protocols
              qcoro
-             ninja
-             libice
-             libsm
-             libxau
-             libxcursor
-             libxfixes
-             libxft
-             libxtst)
+             ninja)
 groups=(plasma)
 source=(https://download.kde.org/stable/plasma/$_dirver/$pkgname-$pkgver.tar.xz)
-sha256sums=('64d753cadcb9cde6ac09eeedf6b02ec5ccdfbd01722c5e9f2533fd0993b0d854')
-
-prepare() {
-  sed -e 's/ecm_optional_add_subdirectory(xembed-sni-proxy)//' -i $pkgname-$pkgver/CMakeLists.txt
-  sed -e 's/ecm_optional_add_subdirectory(gmenu-dbusmenu-proxy)//' -i $pkgname-$pkgver/CMakeLists.txt
-}
+sha256sums=('9a7f2a04e8a44bf24da4d294bba270984a090ef17a082cd1eb25cb8182651d3c')
 
 build() {
   cmake -B build -S $pkgname-$pkgver -G Ninja \
     -DCMAKE_INSTALL_LIBEXECDIR=lib \
     -DCMAKE_BUILD_TYPE=Release \
     -DGLIBC_LOCALE_GEN=OFF \
-    -DBUILD_TESTING=OFF 
+    -DBUILD_TESTING=OFF \
+    -DWITH_X11=OFF
   cmake --build build
 }
 
@@ -136,6 +125,4 @@ package() {
   replaces=(plasma-wayland-session)
 
   DESTDIR="$pkgdir" cmake --install build
-
-  rm -r "$pkgdir"/usr/share/xsessions/plasmax11.desktop
 }
